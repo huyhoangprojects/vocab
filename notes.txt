@@ -1,0 +1,2 @@
+1. We can't not use .jsx => must use .js
+2. Don't use shortcut html in component
