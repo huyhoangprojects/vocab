@@ -37,7 +37,8 @@ const path = require('path');
 	  ],
 	  devServer: {
 	    contentBase: path.join(__dirname, "public"),
-	    compress: true,
+			compress: true,
+			historyApiFallback: true,
 	    port: 8000
 	  }
 	};

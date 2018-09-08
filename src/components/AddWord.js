@@ -11,7 +11,7 @@ class AddWord extends Component {
           <input className="vocab-input new-word__input" />
           <button className="vocab-button new-word__button">Add</button>
         </div>
-        <a href="/" className="vocab-button random-word">Get a word</a>
+        <Link to="/word/99" className="vocab-button random-word">Get a word</Link>
       </div>
     );
   }

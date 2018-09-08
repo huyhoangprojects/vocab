@@ -115,3 +115,16 @@
     }
   }
 }
+
+.logo {
+  &__link {
+    display: block;
+    color: $main-color;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+}
