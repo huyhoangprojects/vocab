@@ -8,17 +8,21 @@ const config = {
   messagingSenderId: "67551096587"
 };
 firebase.initializeApp(config);
+const db = firebase.database();
+const user = 'spideycode';
 
 export function addWord(word) {
-  firebase.database().ref('spideycode').orderByChild('id').limitToLast(1).on('value', function(data) {
-    data;
+  const words = db.ref(user).orderByChild('id').limitToLast(1).once('value');
+  words.then(data => {
     const key = Object.keys(data.val());
-    debugger;
     const id = data.val()[key[0]].id;
-    debugger;
-    firebase.database().ref('spideycode/'+word).set({
+    firebase.database().ref(user + '/' + word).set({
       id: id + 1,
       status: 'new'
     });
   });
+}
+
+export function getWords() {
+  return db.ref(user).orderByChild('id').once('value');
 }
