@@ -9,7 +9,7 @@ class AddWord extends Component {
     this.onClick = this.onClick.bind(this);
     this.onFocus = this.onFocus.bind(this);
     this.state = {
-      id: NaN,
+      id: '',
       error: ''
     }
   }
@@ -41,11 +41,11 @@ class AddWord extends Component {
       const listwords = data.val();
       let arrId = [];
       for (let word in listwords) {
-        arrId.push(listwords[word].id)
+        if(listwords[word].status === 'new') arrId.push(word)
       }
-      const randomId = arrId[Math.floor(Math.random() * arrId.length)]
+      const word = arrId[Math.floor(Math.random() * arrId.length)]
       this.setState({
-        id: randomId
+        id: word
       })
     });
   }
