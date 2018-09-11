@@ -24,7 +24,7 @@ export function addWord(word) {
 }
 
 export function getWords() {
-  return db.ref(user).orderByChild('id').once('value');
+  return db.ref(user).once('value');
 }
 
 export function learnWord({word, part, pronoun, mean, example, image = ''}) {

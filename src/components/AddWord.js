@@ -16,15 +16,30 @@ class AddWord extends Component {
 
   onClick() {
     if(this.textInput.value) {
-      addWord(this.textInput.value)
-      this.setState({
-        error: ''
-      },
-        () => this.textInput.value = ''
-      )
+      const words = getWords();
+
+      words.then(data => {
+        const listwords = data.val();
+        let isAdd = true;
+        for (let word in listwords) {
+          if (word === this.textInput.value) isAdd = false
+        }
+        if (isAdd) {
+          addWord(this.textInput.value)
+          this.setState({
+            error: ''
+          },
+            () => this.textInput.value = ''
+          );
+        } else {
+          this.setState({
+            error: 'This word is existed'
+          });
+        }
+      });
     } else {
       this.setState({
-        error: 'Vui lòng nhập từ mới'
+        error: 'Enter a word, please'
       })
     }
   }
