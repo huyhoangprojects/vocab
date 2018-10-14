@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { learnWord } from '../firebase/firebase';
+import { learnWord, getWords  } from '../firebase/firebase';
 import './Word.scss';
 
 class Word extends Component {
@@ -12,13 +12,19 @@ class Word extends Component {
   }
 
   onSubmit() {
-    learnWord({
-      word: this.state.word,
-      part: this.partInput.value,
-      pronoun: this.pronounInput.value,
-      mean: this.meanInput.value,
-      example: this.exampleInput.value,
+    const words = getWords();
+    words.then(data => {
+      const listwords = data.val();
+      learnWord({
+        id: listwords[this.state.word].id,
+        word: this.state.word,
+        part: this.partInput.value,
+        pronoun: this.pronounInput.value,
+        mean: this.meanInput.value,
+        example: this.exampleInput.value,
+      });
     });
+    
   }
 
   render() {

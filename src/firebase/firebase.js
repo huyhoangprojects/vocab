@@ -27,8 +27,9 @@ export function getWords() {
   return db.ref(user).once('value');
 }
 
-export function learnWord({word, part, pronoun, mean, example, image = ''}) {
+export function learnWord({id, word, part, pronoun, mean, example, image = ''}) {
   db.ref(user + '/' + word).set({
+    id,
     status: 'learned',
     part,
     pronoun,
